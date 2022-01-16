@@ -316,13 +316,13 @@ define_keymap(re.compile("io.elementary.files", re.IGNORECASE),{
 # (overrides some bindings from general file manager code block below)
 define_keymap(re.compile("org.gnome.nautilus|nautilus", re.IGNORECASE),{
     # K("RC-N"): K("C-M-Space"), # macOS Finder search window shortcut Cmd+Option+Space
-    # For this ^^^^^^^^^^^ to work, a custom shortcut must be set up in the Settings app in GNOME 
+    # For this ^^^^^^^^^^^ to work, a custom shortcut must be set up in the Settings app in GNOME
     # to run command: "nautilus --new-window /home/USER" [ replace "USER" ]
     K("RC-KEY_1"):      K("C-KEY_2"),           # View as Icons
     K("RC-KEY_2"):      K("C-KEY_1"),           # View as List (Detailed)
     K("RC-Super-o"):    K("Shift-Enter"),       # Open in new window
     # K("RC-Super-o"):    K("RC-Enter"),          # Open in new tab
-    K("RC-comma"):      K("RC-comma"),          # Overrides "Open preferences dialog" shortcut below	
+    K("RC-comma"):      K("RC-comma"),          # Overrides "Open preferences dialog" shortcut below
 },"Overrides for Nautilus - Finder Mods")
 
 # Keybindings overrides for PCManFM and PCManFM-Qt
@@ -438,6 +438,7 @@ define_keymap(re.compile("Firefox", re.IGNORECASE),{
 })
 define_keymap(re.compile(chromeStr, re.IGNORECASE),{
     K("C-comma"): [K("M-e"), K("s"),K("Enter")],
+    K("RC-K"): K("RC-L"),                         # Clear Chrome DevTools console
 }, "Browsers")
 # Opera C-F12
 
@@ -464,7 +465,7 @@ define_keymap(re.compile(browserStr, re.IGNORECASE),{
     # Enable Ctrl+PgUp/PgDn for tab navigation
     K("Super-Page_Up"):         K("C-Page_Up"),     # Go to prior tab
     K("Super-Page_Down"):       K("C-Page_Down"),   # Go to next tab
-    # Use Cmd+Braces keys for tab navigation instead of page navigation 
+    # Use Cmd+Braces keys for tab navigation instead of page navigation
     # K("C-Left_Brace"): K("C-Page_Up"),
     # K("C-Right_Brace"): K("C-Page_Down"),
 }, "General Web Browsers")
@@ -508,8 +509,8 @@ define_keymap(lambda wm_class: wm_class.casefold() not in remotes,{
     K("RC-Q"): K("M-F4"),                         # Default SL - not-popos
     K("RC-H"):K("Super-h"),                       # Default SL - Minimize app (gnome/budgie/popos/fedora)
     K("M-Tab"): pass_through_key,                 # Default - Cmd Tab - App Switching Default
-    K("RC-Tab"): K("M-Tab"),                      # Default - Cmd Tab - App Switching Default
-    K("RC-Shift-Tab"): K("M-Shift-Tab"),          # Default - Cmd Tab - App Switching Default
+    K("RC-Tab"): K("Super-Tab"),                      # Default - Cmd Tab - App Switching Default
+    K("RC-Shift-Tab"): K("Super-Shift-Tab"),          # Default - Cmd Tab - App Switching Default
     K("RC-Grave"): K("M-Grave"),                  # Default not-xfce4 - Cmd ` - Same App Switching
     K("RC-Shift-Grave"): K("M-Shift-Grave"),      # Default not-xfce4 - Cmd ` - Same App Switching
     # K("RC-Grave"): K("Super-Tab"),                # xfce4 Switch within app group
@@ -739,6 +740,11 @@ define_keymap(re.compile(termStr, re.IGNORECASE),{
     # K("LC-Left"):K("Super-Page_Down"),            # SL - Change workspace (ubuntu/fedora)
     # K("LC-Right"):K("Super-C-Up"),                # SL - Change workspace (popos)
     # K("LC-Left"):K("Super-C-Down"),               # SL - Change workspace (popos)
+    # Clears terminal - [Ctrl-Z, ' clear && fg 2>/dev/null']
+    K("RC-K"): [
+  	    K("RC-Z"),K("Space"),K("c"),K("l"),K("e"),K("a"),K("r"),K("Space"),K("Shift-KEY_7"),K("Shift-KEY_7"),K("Space"),
+  	    K("f"),K("g"),K("Space"),K("KEY_2"),K("Shift-Dot"),K("SLASH"),K("d"),K("e"),K("v"),K("SLASH"),K("n"),K("u"),K("l"),K("l"),K("Enter")
+    ],
     # Ctrl Tab - In App Tab Switching
     K("LC-Tab") : K("LC-PAGE_DOWN"),
     K("LC-Shift-Tab") : K("LC-PAGE_UP"),
@@ -770,7 +776,6 @@ define_keymap(re.compile(termStr, re.IGNORECASE),{
     K("RC-G"): K("C-Shift-G"),
     K("RC-H"): K("C-Shift-H"),
     K("RC-J"): K("C-Shift-J"),
-    K("RC-K"): K("C-Shift-K"),
     K("RC-L"): K("C-Shift-L"),
     K("RC-SEMICOLON"): K("C-Shift-SEMICOLON"),
     K("RC-APOSTROPHE"): K("C-Shift-APOSTROPHE"),
